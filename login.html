@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="styles.css">
+<title>Login</title>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Iniciar sesión</h1>
+
+<input id="email" type="email" placeholder="Correo electrónico">
+<input id="user" placeholder="Usuario (opcional)">
+<input id="pass" type="password" placeholder="Contraseña">
+
+<button onclick="login()">Entrar</button>
+
+<p id="msg"></p>
+</div>
+
+
+<script>
+function login(){
+    const email=document.getElementById("email").value;
+    const user=document.getElementById("user").value;
+    const pass=document.getElementById("pass").value;
+
+    const lista=JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    const encontrado = lista.find(a=>
+        (a.usuario===user || a.correo===email) && 
+        a.password===pass
+    );
+
+    if(encontrado){
+        document.getElementById("msg").innerText="Acceso correcto ✔";
+        document.getElementById("msg").style.color="green";
+
+        setTimeout(()=>{
+            location.href="index.html";
+        },1000);
+    }else{
+        document.getElementById("msg").innerText="Datos incorrectos";
+        document.getElementById("msg").style.color="red";
+    }
+}
+</script>
+
+</body>
+</html>

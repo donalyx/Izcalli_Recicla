@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="styles.css">
+<title>Registro</title>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Crear cuenta</h1>
+
+<input id="email" type="email" placeholder="Correo electrónico">
+<input id="user" placeholder="Usuario">
+<input id="pass" type="password" placeholder="Contraseña">
+
+<button onclick="registrar()">Registrarse</button>
+<p id="msg"></p>
+
+</div>
+
+<script>
+
+function registrar(){
+
+    const email=document.getElementById("email").value;
+    const user=document.getElementById("user").value;
+    const pass=document.getElementById("pass").value;
+
+    if(user==="" || pass==="" || email===""){
+        document.getElementById("msg").innerText="Completa todos los campos";
+        return;
+    }
+
+    const lista=JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    lista.push({
+        correo:email, 
+        usuario:user,
+        password:pass
+    });
+
+    localStorage.setItem("usuarios",JSON.stringify(lista));
+
+    document.getElementById("msg").innerText="Usuario creado ✔";
+
+    setTimeout(()=>{
+        location.href="login.html";
+    },1000);
+}
+
+</script>
+
+</body>
+</html>
