@@ -480,3 +480,11 @@ footer .social-links a {
 footer .social-links a:hover {
   transform: scale(1.2);
 }
+.camion-img {
+    width: 450px;   /* 🔹 Ajusta el tamaño aquí */
+    height: auto;   /* Mantiene proporción */
+    display: block;
+    margin: 20px auto; /* Centrado */
+
+}
+
