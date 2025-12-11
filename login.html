@@ -17,34 +17,43 @@
 
 <button onclick="login()">Entrar</button>
 
+<!-- Botón para regresar -->
+<button onclick="volverLogin()" style="margin-top:10px;">Regresar al login</button>
+
 <p id="msg"></p>
 </div>
 
 
 <script>
 function login(){
-    const email=document.getElementById("email").value;
-    const user=document.getElementById("user").value;
-    const pass=document.getElementById("pass").value;
+    const email = document.getElementById("email").value;
+    const user  = document.getElementById("user").value;
+    const pass  = document.getElementById("pass").value;
 
-    const lista=JSON.parse(localStorage.getItem("usuarios")) || [];
+    const lista = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-    const encontrado = lista.find(a=>
-        (a.usuario===user || a.correo===email) && 
-        a.password===pass
+    const encontrado = lista.find(a =>
+        (a.usuario === user || a.correo === email) &&
+        a.password === pass
     );
 
     if(encontrado){
-        document.getElementById("msg").innerText="Acceso correcto ✔";
-        document.getElementById("msg").style.color="green";
+        document.getElementById("msg").innerText = "Acceso correcto ✔";
+        document.getElementById("msg").style.color = "green";
 
         setTimeout(()=>{
-            location.href="0.html";
-        },1000);
-    }else{
-        document.getElementById("msg").innerText="Datos incorrectos";
-        document.getElementById("msg").style.color="red";
+            location.href = "0.html";
+        }, 1000);
+
+    } else {
+        document.getElementById("msg").innerText = "Datos incorrectos";
+        document.getElementById("msg").style.color = "red";
     }
+}
+
+// ✅ ESTA FUNCIÓN DEBE IR AFUERA, NO DENTRO DE LOGIN
+function volverLogin(){
+    location.href = "index.html";  // Cambia si tu archivo tiene otro nombre
 }
 </script>
 

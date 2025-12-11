@@ -16,6 +16,10 @@
 <input id="pass" type="password" placeholder="Contraseña">
 
 <button onclick="registrar()">Registrarse</button>
+
+<!-- 🆕 Botón para regresar al login -->
+<button onclick="volverLogin()" style="margin-top:10px;">Regresar al login</button>
+
 <p id="msg"></p>
 
 </div>
@@ -24,30 +28,37 @@
 
 function registrar(){
 
-    const email=document.getElementById("email").value;
-    const user=document.getElementById("user").value;
-    const pass=document.getElementById("pass").value;
+    const email = document.getElementById("email").value;
+    const user  = document.getElementById("user").value;
+    const pass  = document.getElementById("pass").value;
 
-    if(user==="" || pass==="" || email===""){
-        document.getElementById("msg").innerText="Completa todos los campos";
+    if(user === "" || pass === "" || email === ""){
+        document.getElementById("msg").innerText = "Completa todos los campos";
+        document.getElementById("msg").style.color = "red";
         return;
     }
 
-    const lista=JSON.parse(localStorage.getItem("usuarios")) || [];
+    const lista = JSON.parse(localStorage.getItem("usuarios")) || [];
 
     lista.push({
-        correo:email, 
-        usuario:user,
-        password:pass
+        correo: email,
+        usuario: user,
+        password: pass
     });
 
-    localStorage.setItem("usuarios",JSON.stringify(lista));
+    localStorage.setItem("usuarios", JSON.stringify(lista));
 
-    document.getElementById("msg").innerText="Usuario creado ✔";
+    document.getElementById("msg").innerText = "Usuario creado ✔";
+    document.getElementById("msg").style.color = "green";
 
     setTimeout(()=>{
-        location.href="login.html";
+        location.href = "login.html";  // Cambia si tu login tiene otro nombre
     },1000);
+}
+
+// 🆕 Función para regresar al login
+function volverLogin(){
+    location.href = "index.html"; // Cambia por el nombre real del login
 }
 
 </script>
